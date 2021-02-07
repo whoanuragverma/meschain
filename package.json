@@ -9,7 +9,6 @@
         "build:server": "cd server && rimraf build && tsc",
         "build:script": "cd scripts && rimraf build && webpack --config webpack.prod.js",
         "dev:script": "cd scripts && webpack serve --hot --config webpack.dev.js",
-        "build": "npm run build:server && npm run build:script && npm run copy",
         "copy": "copyfiles -f \"./scripts/dist/*.*\" \"./server/static\"",
         "start": "cd server && node ./build/index.js"
     },
