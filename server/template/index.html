@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MesChain</title>
+        <script src="./bundle.js"></script>
+    </head>
+    <body>
+        <div style="display: flex; flex-direction: column">
+            <span class="id">Your ID: </span>
+            <span>Connections: <strong class="clients">0</strong></span>
+            <input type="text" id="message" />
+            <button>Send</button>
+        </div>
+        <div class="msg"></div>
+
+        <script>
+            const peer = new Peer();
+            peer.id.subscribe((id) => {
+                document.querySelector(".id").innerHTML += id;
+            });
+            peer.numConnections.subscribe((count) => {
+                document.querySelector(".clients").innerHTML = count;
+            });
+            peer.message.subscribe((data) => {
+                document.querySelector(".msg").innerHTML += `<p>${data}</p>`;
+            });
+            document.querySelector("button").addEventListener("click", () => {
+                const val = document.querySelector("input").value;
+                peer.broadCast(val);
+            });
+        </script>
+    </body>
+</html>

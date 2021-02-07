@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PeerJS</title>
+
+        <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <p>My ID: <span id="myID"></span></p>
+            <span id="cnn"></span>
+            <p>Connections: <span id="conn">0</span></p>
+            <input type="text" name="Message" id="msg" />
+            <button>Send</button>
+            <span id="meaages"></span>
+        </div>
+        <div class="logger"></div>
+        <script>
+            // Array of remote peers ID and data channel
+            var connections = {}; // This is where you manage multi-connections
+
+            // create a Peer
+            // const peer = new Peer({
+            //     host: "localhost",
+            //     port: 3000,
+            //     path: "peerServer",
+            // });
+
+            // Get your local peer id
+            // peer.on("open", function (id) {
+            //     console.log(id);
+            //     document.querySelector("#myID").innerHTML = id;
+            // });
+            // peer.on("connection", function (conn) {
+            //     connections[conn["peer"]] = conn;
+            //     conn.on("data", function (data) {
+            //         document.querySelector("meaages").innerHTML += data;
+            //     });
+            // });
+            // const socket = io("http://localhost:3000");
+            // // socket.on("CLIENT", (data) => {
+            // socket.on("UPDATE", (data) => {
+            //     const myID = document.querySelector("#myID").innerHTML;
+            //     // Connect with new clients
+            //     for (let i = 0; i < data.length; i++) {
+            //         if (
+            //             data[i] != myID &&
+            //             !Object.keys(connections).includes(data[i])
+            //         ) {
+            //             connect(data[i]);
+            //         }
+            //     }
+            //     document.querySelector("#conn").innerHTML = Object.keys(
+            //         connections
+            //     ).length;
+            // });
+            // socket.on("DISCONNECT", (data) => {
+            //     delete connections[data];
+            //     logger("Disconnected with client: " + data);
+            //     document.querySelector("#conn").innerHTML = Object.keys(
+            //         connections
+            //     ).length;
+            // });
+            // function connect(ID) {
+            //     const conn = peer.connect(ID);
+            //     connections[ID] = conn;
+            //     conn.on("open", () => {
+            //         logger("Connected with client: " + ID);
+            //         conn.on("data", (data) => {
+            //             document.querySelector("#meaages").innerHTML += data;
+            //         });
+            //     });
+            // }
+            // // So now you have multi-connections. If you want to send a message to all other peer, just using for loop with all the connections
+            // function broadcastMessage(message) {
+            //     Object.keys(connections).forEach((el) => {
+            //         connections[el].send(
+            //             `FROM: ${
+            //                 document.querySelector("#myID").innerHTML
+            //             } - ${message}`
+            //         );
+            //     });
+            // }
+            // function logger(status) {
+            //     document.querySelector(
+            //         ".logger"
+            //     ).innerHTML += `<p>${status}</p>`;
+            // }
+            // document.querySelector("button").addEventListener("click", () => {
+            //     const val = document.querySelector("#msg").value;
+            //     broadcastMessage(val);
+            // });
+        </script>
+    </body>
+</html>

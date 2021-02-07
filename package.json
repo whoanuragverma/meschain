@@ -1,0 +1,50 @@
+{
+    "name": "meschain",
+    "version": "1.0.0",
+    "description": "Blockchain based messanger",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev:server": "cd server && nodemon",
+        "build:server": "cd server && rimraf build && tsc",
+        "build:script": "cd scripts && rimraf build && webpack --config webpack.prod.js",
+        "dev:script": "cd scripts && webpack serve --hot --config webpack.dev.js",
+        "build": "npm run build:server && npm run build:script && npm run copy",
+        "copy": "copyfiles -f \"./scripts/dist/*.*\" \"./server/static\"",
+        "start": "cd server && node ./build/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/whoanuragverma/meschain.git"
+    },
+    "author": "Anurag Verma",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/whoanuragverma/meschain/issues"
+    },
+    "homepage": "https://github.com/whoanuragverma/meschain#readme",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "peer": "^0.6.1",
+        "peerjs": "^1.3.1",
+        "rimraf": "^3.0.2",
+        "rxjs": "^6.6.3",
+        "socket.io": "^3.1.1",
+        "socket.io-client": "^3.1.1",
+        "typescript": "^4.1.3"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.11",
+        "html-webpack-plugin": "^5.0.0",
+        "nodemon": "^2.0.7",
+        "ts-loader": "^8.0.15",
+        "ts-node": "^9.1.1",
+        "webpack": "^5.21.1",
+        "webpack-cli": "^4.5.0",
+        "copyfiles": "^2.4.1",
+        "webpack-dev-server": "^3.11.2",
+        "webpack-merge": "^5.7.3"
+    }
+}
