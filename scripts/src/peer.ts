@@ -37,7 +37,7 @@ class Peer {
                 this.message$.next(data);
             });
         });
-        this.socket = io("http://localhost:3000");
+        this.socket = io(window.location.hostname);
         this.socket.on("UPDATE", (data: any) => {
             // Connect with new clients
             for (let i = 0; i < data.length; i++) {

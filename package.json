@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev:server": "cd server && nodemon",
-        "build:server": "cd server && rimraf build && tsc",
+        "build:server": "cd server && rimraf build && rimraf static && tsc",
         "build:script": "cd scripts && rimraf build && webpack --config webpack.prod.js",
         "dev:script": "cd scripts && webpack serve --hot --config webpack.dev.js",
         "copy": "copyfiles -f \"./scripts/dist/*.*\" \"./server/static\"",
