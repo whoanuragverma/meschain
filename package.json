@@ -36,13 +36,14 @@
     },
     "devDependencies": {
         "@types/express": "^4.17.11",
+        "copyfiles": "^2.4.1",
+        "dotenv-webpack": "^6.0.0",
         "html-webpack-plugin": "^5.0.0",
         "nodemon": "^2.0.7",
         "ts-loader": "^8.0.15",
         "ts-node": "^9.1.1",
         "webpack": "^5.21.1",
         "webpack-cli": "^4.5.0",
-        "copyfiles": "^2.4.1",
         "webpack-dev-server": "^3.11.2",
         "webpack-merge": "^5.7.3"
     }

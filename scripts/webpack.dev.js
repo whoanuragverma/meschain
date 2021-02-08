@@ -15,6 +15,7 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "./index.html"),
             inject: "head",
+            scriptLoading: "blocking",
         }),
     ],
 });

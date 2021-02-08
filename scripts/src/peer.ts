@@ -24,15 +24,20 @@ class Peer {
      */
     constructor(id?: string) {
         this.peer = new peer(id, {
-            host: "/",
+            host: window.location.hostname.includes("localhost")
+                ? "localhost"
+                : "/",
+            port: window.location.hostname.includes("localhost")
+                ? 3000
+                : parseInt(window.location.port),
             path: "peerServer",
             config: {
                 iceServers: [
                     { urls: "stun:stun.l.google.com:19302" },
                     {
-                        urls: "turn:numb.viagenie.ca",
-                        username: "webrtc@live.com",
-                        credential: "muazkh",
+                        urls: process.env.TURN_SERVER,
+                        username: process.env.TURN_USER,
+                        credential: process.env.TURN_PASS,
                     },
                 ],
             },
@@ -47,7 +52,11 @@ class Peer {
                 this.message$.next(data);
             });
         });
-        this.socket = io(window.location.hostname);
+        this.socket = io(
+            window.location.hostname.includes("localhost")
+                ? "localhost:3000"
+                : window.location.hostname
+        );
         this.socket.on("UPDATE", (data: any) => {
             // Connect with new clients
             for (let i = 0; i < data.length; i++) {
