@@ -26,6 +26,16 @@ class Peer {
         this.peer = new peer(id, {
             host: "/",
             path: "peerServer",
+            config: {
+                iceServers: [
+                    { urls: "stun:stun.l.google.com:19302" },
+                    {
+                        urls: "turn:numb.viagenie.ca",
+                        username: "webrtc@live.com",
+                        credential: "muazkh",
+                    },
+                ],
+            },
         });
 
         this.id = fromEvent(this.peer, "open");
