@@ -29,6 +29,9 @@
             });
             document.querySelector("button").addEventListener("click", () => {
                 const val = document.querySelector("input").value;
+                document.querySelector(
+                    ".msg"
+                ).innerHTML += `<p>You: ${val}</p>`;
                 peer.broadCast(val);
             });
         </script>
