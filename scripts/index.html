@@ -16,7 +16,8 @@
         <div class="msg"></div>
 
         <script>
-            const peer = new Peer();
+            const user = new User();
+            const peer = new Peer(user.keyHash, user.whoami);
             peer.id.subscribe((id) => {
                 document.querySelector(".id").innerHTML += id;
             });
@@ -28,10 +29,10 @@
             });
             document.querySelector("button").addEventListener("click", () => {
                 const val = document.querySelector("input").value;
-                document.querySelector(
-                    ".msg"
-                ).innerHTML += `<p>You: ${val}</p>`;
-                peer.broadCast(val);
+                // document.querySelector(
+                //     ".msg"
+                // ).innerHTML += `<p>You: ${val}</p>`;
+                peer.privateMSG(undefined, val, "WHO");
             });
         </script>
     </body>
