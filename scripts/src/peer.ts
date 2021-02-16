@@ -16,6 +16,10 @@ class Peer {
     public numConnections: Observable<number> = this.subs.asObservable();
     private message$ = new BehaviorSubject("");
     public message: Observable<string> = this.message$.asObservable();
+    private logger$ = new BehaviorSubject("");
+    public logger: Observable<string> = this.logger$.asObservable();
+    private identity$ = new BehaviorSubject("");
+    public identity: Observable<string> = this.identity$.asObservable();
     private connections: any = {};
     private socket: any;
     /**
@@ -71,7 +75,7 @@ class Peer {
         });
         this.socket.on("DISCONNECT", (data: any) => {
             delete this.connections[data];
-            console.log("Disconnected with client: " + data);
+            this.logger$.next("Disconnected with client: " + data);
             this.subs.next(Object.keys(this.connections).length);
         });
     }
@@ -79,7 +83,7 @@ class Peer {
         const conn = this.peer.connect(id);
         this.connections[id] = conn;
         conn.on("open", () => {
-            console.log("Connected with client: " + id);
+            this.logger$.next("Connected with client: " + id);
             conn.on("data", (data: any) => {
                 this.handler(JSON.parse(data));
             });
@@ -88,10 +92,15 @@ class Peer {
     private handler(data: any) {
         switch (data.data.type) {
             case "WHO":
+                // Peer asks who are you? You reply and ask who are you?
                 this.privateMSG(this.whoami, data.from, "IDENTITY");
+                this.privateMSG(undefined, data.from, "WHO");
                 break;
             case "IDENTITY":
-                this.message$.next(JSON.stringify(data));
+                this.identity$.next(JSON.stringify(data));
+                break;
+            default:
+                console.log(data);
         }
     }
     /**

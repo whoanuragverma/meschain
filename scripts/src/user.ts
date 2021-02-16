@@ -16,16 +16,16 @@ class User {
     public keyHash: string;
     public whoami: publicInfo;
     constructor(
-        private publicKey?: Uint8Array,
-        private secretKey?: Uint8Array,
+        publicKey?: Uint8Array,
+        secretKey?: Uint8Array,
         private username?: string
     ) {
         const kp = nacl.box.keyPair();
         this.userInfo = {
             username: this.username,
-            publicKey: this.publicKey || kp.publicKey,
-            secretKey: this.secretKey || kp.secretKey,
-            keyHash: `0x${sha256(this.publicKey || kp.publicKey)}`,
+            publicKey: publicKey || kp.publicKey,
+            secretKey: secretKey || kp.secretKey,
+            keyHash: `0x${sha256(publicKey || kp.publicKey)}`,
         };
         this.keyHash = this.userInfo.keyHash;
         this.whoami = {
