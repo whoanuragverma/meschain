@@ -33,7 +33,7 @@ class Peer {
                 : "/",
             port: window.location.hostname.includes("localhost")
                 ? 3000
-                : parseInt(window.location.port) || 43,
+                : parseInt(window.location.port) || 443,
             path: "peerServer",
             config: {
                 iceServers: [
