@@ -16,6 +16,7 @@ module.exports = merge(common, {
             template: path.join(__dirname, "./index.html"),
             inject: "head",
             scriptLoading: "blocking",
+            chunks: ["vendor"],
         }),
     ],
 });

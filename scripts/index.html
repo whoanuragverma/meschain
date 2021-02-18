@@ -16,6 +16,11 @@
         <div class="msg"></div>
 
         <script>
+            const w = new Worker("./core.bundle.js");
+            function spawn(d) {
+                w.postMessage(d);
+            }
+            w.addEventListener("message", (e) => console.log(e.data));
             const user = new User();
             const peer = new Peer(user.keyHash, user.whoami);
             peer.id.subscribe((id) => {
@@ -25,6 +30,9 @@
                 document.querySelector(".clients").innerHTML = count;
             });
             peer.message.subscribe((data) => {
+                document.querySelector(".msg").innerHTML += `<p>${data}</p>`;
+            });
+            peer.identity.subscribe((data) => {
                 document.querySelector(".msg").innerHTML += `<p>${data}</p>`;
             });
             document.querySelector("button").addEventListener("click", () => {

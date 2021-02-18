@@ -2,7 +2,10 @@ const path = require("path");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-    entry: "./src/index.ts",
+    entry: {
+        vendor: "./src/index.ts",
+        core: "./src/core/index.ts",
+    },
     module: {
         rules: [
             {
@@ -19,7 +22,7 @@ module.exports = {
         },
     },
     output: {
-        filename: "./bundle.js",
+        filename: "./[name].bundle.js",
         path: path.resolve(__dirname, "dist"),
     },
     plugins: [new Dotenv()],
