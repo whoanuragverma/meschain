@@ -6,6 +6,7 @@ self.addEventListener("message", (e) => {
             Blockchain.new(e.data.msg);
             break;
         case "CHAIN":
-            self.postMessage(Blockchain, "target");
+            //@ts-ignore
+            self.postMessage(Blockchain);
     }
 });
