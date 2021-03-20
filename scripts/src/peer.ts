@@ -94,11 +94,16 @@ class Peer {
             case "WHO":
                 // Peer asks who are you? You reply and ask who are you?
                 this.privateMSG(this.whoami, data.from, "IDENTITY");
-                this.privateMSG(undefined, data.from, "WHO");
+                this.privateMSG(undefined, data.from, "HANDSHAKE");
                 break;
             case "IDENTITY":
                 this.identity$.next(JSON.stringify(data));
                 break;
+            case "HANDSHAKE":
+                this.privateMSG(this.whoami, data.from, "IDENTITY");
+                break;
+            case "BLOCK":
+                (window as any).w.postMessage(data.message);
             default:
                 console.log(data);
         }

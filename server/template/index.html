@@ -6,16 +6,14 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <link rel="apple-touch-icon" href="/logo192.png" />
-        <script src="./vendor.bundle.js"></script>
+        <script src="vendor.bundle.js"></script>
         <title>Meschain</title>
-        <link href="/static/css/main.feee3b5f.chunk.css" rel="stylesheet" />
-        <script>
-            const w = new Worker("./core.bundle.js");
-            function spawn(d) {
-                w.postMessage(d);
-            }
-            w.addEventListener("message", (e) => console.log(e.data));
-        </script>
+        <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+            rel="stylesheet"
+            id="bootstrap-css"
+        />
+        <link href="/static/css/main.5c596260.chunk.css" rel="stylesheet" />
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -127,7 +125,14 @@
                 r();
             })([]);
         </script>
-        <script src="/static/js/2.8f7d62d6.chunk.js"></script>
-        <script src="/static/js/main.583a2fa4.chunk.js"></script>
+        <script src="/static/js/2.0fe11809.chunk.js"></script>
+        <script src="/static/js/main.8564b2a0.chunk.js"></script>
     </body>
+    <script>
+        function spawn(e) {
+            w.postMessage(e);
+        }
+        (window.w = new Worker("core.bundle.js")),
+            w.addEventListener("message", (e) => console.log(e.data));
+    </script>
 </html>
