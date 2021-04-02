@@ -14,6 +14,7 @@ interface T {
     hash: string;
     signature: string;
     to: string;
+    from: string;
     offset: string;
     seed: string;
 }
