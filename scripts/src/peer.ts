@@ -103,10 +103,15 @@ class Peer {
                 this.privateMSG(this.whoami, data.from, "IDENTITY");
                 break;
             case "BLOCK":
-                console.log(data);
                 (window as any).w.postMessage({
                     cmd: "NEW",
                     msg: { ...data.data.message, from: data.from },
+                });
+                break;
+            case "CONSENSUS":
+                (window as any).w.postMessage({
+                    cmd: "UPDATE",
+                    msg: data.data.message,
                 });
                 break;
             default:

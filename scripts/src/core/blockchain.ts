@@ -33,7 +33,7 @@ class Blockchain extends Array<Block> {
         this.push(block);
         this.mine();
         const end = new Date().getTime();
-        console.log(`Mined new block in ${end - start}ms`);
+        return `Mined new block in ${end - start}ms`;
     }
     mine() {
         if (this.length == 0) {

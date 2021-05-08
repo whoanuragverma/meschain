@@ -9,7 +9,7 @@ const peers_1 = __importDefault(require("./peers"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 require("dotenv").config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express_1.default();
 app.use(cors_1.default());
 app.enable("trust proxy");
